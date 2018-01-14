@@ -2,13 +2,17 @@
   "name": "electronapp",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron": "electron .",
+    "electron-build": "ng build --prod && electron .",
+    "electron-rebuild": "electron-rebuild -f -w sqlite3"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +26,10 @@
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
     "core-js": "^2.4.1",
+    "electron-rebuild": "^1.7.3",
+    "knex": "^0.14.2",
     "rxjs": "^5.5.2",
+    "sqlite3": "^3.1.13",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
@@ -33,6 +40,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
+    "electron": "^1.7.10",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
