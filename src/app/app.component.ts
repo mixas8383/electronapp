@@ -1,4 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
+import {ElectronService} from 'ngx-electron';
+import {LdbService} from './services/ldb.service';
 //import{knex} from 'knex';
 declare let electron: any;
 declare let knex: any;
@@ -16,21 +18,26 @@ export class AppComponent {
   public list: Array<string>;
   public db = knex;
 
-  constructor(private ref: ChangeDetectorRef) { }
+  constructor(private ref: ChangeDetectorRef
+    ,private _electronService: ElectronService
+    ,private ldbService: LdbService
+  ) { }
 
   ngOnInit() {
     console.log(knex);
-    let me = this;
-    let result = me.db.select("*").from("types")
-    result.then(function (rows) { console.log(rows) });
-    me.ipc.send("mainWindowLoaded")
-    me.ipc.on("resultSent", function (evt, result) {
-      me.list = [];
-      for (var i = 0; i < result.length; i++) {
-        me.list.push(result[i].FirstName.toString());
-      }
-      me.ref.detectChanges()
-    });
+    let self = this;
+  self.ldbService.getData();
+    //console.log(self._electronService);
+    // let result = self.db.select("*").from("types")
+    // result.then(function (rows) { console.log(rows) });
+    self.ipc.send("mainWindowLoaded")
+    // self.ipc.on("resultSent", function (evt, result) {
+    //   self.list = [];
+    //   for (var i = 0; i < result.length; i++) {
+    //     self.list.push(result[i].FirstNaself.toString());
+    //   }
+    //   self.ref.detectChanges()
+    // });
 
   }
 
