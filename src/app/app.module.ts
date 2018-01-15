@@ -5,12 +5,14 @@ import {NgxElectronModule} from 'ngx-electron';
 
 import { AppComponent } from './app.component';
 import {LdbService} from './services/ldb.service';
+import { PlasticComponent } from './plastic/plastic.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlasticComponent
   ],
   imports: [
     BrowserModule,
